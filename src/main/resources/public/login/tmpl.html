@@ -1,0 +1,41 @@
+<md-content ng-controller="LoginController">
+    <form name="loginForm" ng-submit="login()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Spring Derby Test</span>
+                </h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div>
+                <div layout-gt-xs="row" ng-hide="!errorMessage">
+                    <md-input-container class="md-block" flex-gt-xs role="alert" >
+                        <label ng-hide="!errorMessage">Error</label>
+                        <input ng-model="errorMessage" type="text" ng-hide="!errorMessage" ng-readonly="true" />
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Username</label>
+                        <input ng-model="user.username" type="text" id="username" required="required" />
+                        <div ng-messages="loginForm.username.$error" md-auto-hide="true">
+                            <div ng-message="required">Username Required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Password</label>
+                        <input ng-model="user.password" type="password" id="password" required="required" />
+                        <div ng-messages="loginForm.password.$error" md-auto-hide="true">
+                            <div ng-message="required">Password Required</div>
+                        </div>
+                    </md-input-container>
+                </div>
+            </div>
+        </md-content>
+        <md-button class="md-raised md-primary" ng-click="login()">Login</md-button>
+    </form>
+</md-content>

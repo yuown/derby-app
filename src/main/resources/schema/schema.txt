@@ -1,0 +1,52 @@
+alter table users drop primary key;
+
+alter table users add primary key (username);
+
+CREATE TABLE groups (
+  id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
+  group_name varchar(50) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE authorities (
+  username varchar(255) NOT NULL,
+  authority varchar(50) NOT NULL,
+  UNIQUE (username,authority),
+  CONSTRAINT authorities_ibfk_1 FOREIGN KEY (username) REFERENCES users (username)
+);
+
+CREATE TABLE group_authorities (
+  group_id bigint NOT NULL,
+  authority varchar(50) NOT NULL,
+  id int NOT NULL GENERATED ALWAYS AS IDENTITY,
+  PRIMARY KEY (id),
+  Unique (group_id, authority),
+  CONSTRAINT group_authorities_ibfk_1 FOREIGN KEY (group_id) REFERENCES groups (id)
+);
+
+CREATE TABLE group_members (
+  id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
+  username varchar(50) NOT NULL,
+  group_id bigint NOT NULL,
+  PRIMARY KEY (id),
+  unique (group_id),
+  CONSTRAINT group_members_ibfk_1 FOREIGN KEY (group_id) REFERENCES groups (id)
+);
+
+CREATE TABLE persistent_logins (
+  username varchar(64) NOT NULL,
+  series varchar(64) NOT NULL,
+  token varchar(64) NOT NULL,
+  last_used timestamp NOT NULL,
+  PRIMARY KEY (series)
+);
+
+INSERT INTO users (id, username, password, enabled, full_name) VALUES (1, 'spring-derby', 'spring-derby', true, 'spring-derby');
+
+INSERT INTO groups (group_name) VALUES ('ADMINS');
+INSERT INTO groups (group_name) VALUES ('USERS');
+
+INSERT INTO group_members (username, group_id) VALUES ('spring-derby', 1);
+
+INSERT INTO group_authorities (group_id, authority) VALUES (1,'PROJECT1');
+INSERT INTO group_authorities (group_id, authority) VALUES (1,'PROJECT2');

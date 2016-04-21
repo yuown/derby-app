@@ -1,0 +1,1 @@
+var springDerbyApp = angular.module("springDerbyApp", [ 'ngMaterial', 'ngRoute', 'route-segment', 'view-segment', 'ngCookies', 'ui.sortable' ]);
