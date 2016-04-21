@@ -6,30 +6,35 @@ springDerbyApp.controller('HomeController', [ '$scope', '$rootScope', '$timeout'
     };
 
     $scope.urls = [ {
-		url : "#/home/proxies",
-		title : "Proxies",
-		icon : "menu"
-	}, {
-		url : "#/home/browsers",
-		title : "Browsers",
-		icon : ""
-	}, {
-		url : "#/home/urls",
-		title : "URLs",
-		icon : ""
-	}, {
-		url : "#/home/tests",
-		title : "Tests",
-		icon : ""
-	}, {
-		url : "#/home/pages",
-		title : "Pages",
-		icon : ""
-	}, {
-		url : "#/home/configs",
-		title : "Configuration Items",
-		icon : ""
-	} ];
+		url : "#/home/project1",
+		title : "Project1",
+		icon : "menu",
+		subs: [
+		       {
+		    	   href: "#/home/project1/webpage1",
+		    	   title: "Webpage1"
+		       },
+		       {
+		    	   href: "#/home/project1/webpage2",
+		    	   title: "Webpage2"
+		       }
+		       ]
+	},
+	{
+		url : "#/home/project2",
+		title : "Project2",
+		icon : "menu",
+		subs: [
+		       {
+		    	   href: "#/home/project2/webpage1",
+		    	   title: "Webpage1"
+		       },
+		       {
+		    	   href: "#/home/project2/webpage2",
+		    	   title: "Webpage2"
+		       }
+		       ]
+	}];
     
     $controller('BaseController', {
 		$scope : $scope

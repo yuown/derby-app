@@ -10,11 +10,19 @@
 			</div>
 		</md-toolbar>
 		<md-content ng-cloak>
-			<md-list>
-	            <md-list-item ng-repeat="link in urls" ng-href="{{link.url}}" ng-click="toggleLeft()">
-					<md-button><md-icon md-svg-icon="{{link.icon}}"></md-icon>  <label>{{link.title}}</label></md-button>
-				</md-list-item>
-	        </md-list>
+<!-- 			<md-list> -->
+<!-- 	            <md-list-item ng-repeat="link in urls" ng-href="{{link.url}}" ng-click="toggleLeft()"> -->
+<!-- 					<md-button><md-icon md-svg-icon="{{link.icon}}"></md-icon>  <label>{{link.title}}</label></md-button> -->
+<!-- 				</md-list-item> -->
+<!-- 	        </md-list> -->
+			<md-sidemenu locked="true">
+			  <md-sidemenu-group ng-repeat="link in urls" ng-click="toggleLeft()">
+			    <md-subheader class="md-no-sticky">{{link.title}}</md-subheader>
+			    <md-sidemenu-content md-icon="{{link.icon}}" md-heading="Menu 1" md-arrow="true">
+			      <md-sidemenu-button ng-repeat="sub in link.subs" href="{{sub.href}}">{{sub.title}}</md-sidemenu-button>
+			    </md-sidemenu-content>
+			  </md-sidemenu-group>
+			</md-sidemenu>
 		</md-content>
 	</md-sidenav>
  
