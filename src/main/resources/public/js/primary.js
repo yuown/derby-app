@@ -56,7 +56,7 @@ springDerbyApp.controller('LoginController', [ '$scope', '$location', 'Authentic
 		$scope.errorMessage = '';
 		AuthenticationService.Login($scope.user, function(response, headers) {
 			if (response == 200) {
-				AuthenticationService.SetCredentials($scope.user.username, headers("SESSION-KEY"), headers("USER_ROLES"), headers("USER_FULLNAME"), headers("USER_STAFF"));
+				AuthenticationService.SetCredentials($scope.user.username, headers("SESSION-KEY"), headers("USER_ROLES"));
 				$location.path('/home');
 			} else {
 				var err = '';

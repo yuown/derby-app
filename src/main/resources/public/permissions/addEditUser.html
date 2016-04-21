@@ -1,0 +1,41 @@
+<md-dialog aria-label="User" ng-controller="AddEditUserController" ng-cloak style="width: 100%" ng-init="user.confirmPassword = user.password">
+	<form ng-submit="save()" name="userForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>User</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <div class="md-dialog-content" class="md-dialog-content" flex>
+	        <md-input-container class="md-block" flex-gt-xs>
+	            <label>User Name</label>
+	            <input ng-model="user.username" type="text" />
+	        </md-input-container>
+	        <md-input-container class="md-block" flex-gt-xs>
+	            <label>User FullName</label>
+	            <input ng-model="user.fullName" type="text" />
+	        </md-input-container>
+	        <md-input-container class="md-block" flex-gt-xs>
+	            <label>Password</label>
+	            <input ng-model="user.password" type="password" />
+	        </md-input-container>
+	        <md-input-container class="md-block" flex-gt-xs>
+	            <label>Confirm Password</label>
+	            <input ng-model="user.confirmPassword" type="password" name="confirmPassword" />
+	            <div ng-messages="userForm.confirmPassword.$error" ng-if="errorMessage==true">
+            		<div ng-message="required">Passwords don't match, Please check</div>
+          		</div>
+	        </md-input-container>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()"> Cancel </md-button>
+        <md-button type="submit" style="margin-right:20px;"> Save </md-button>
+    </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -50,3 +50,5 @@ INSERT INTO group_members (username, group_id) VALUES ('spring-derby', 1);
 
 INSERT INTO group_authorities (group_id, authority) VALUES (1,'PROJECT1');
 INSERT INTO group_authorities (group_id, authority) VALUES (1,'PROJECT2');
+INSERT INTO group_authorities (group_id, authority) VALUES (1,'ADMIN_INFO');
+

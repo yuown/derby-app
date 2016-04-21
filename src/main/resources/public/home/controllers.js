@@ -6,35 +6,72 @@ springDerbyApp.controller('HomeController', [ '$scope', '$rootScope', '$timeout'
     };
 
     $scope.urls = [ {
-		url : "#/home/project1",
+        title : "Logout",
+        role: "",
+        subs: [
+               {
+                   href: "#/",
+                   title: "Logout",
+                   icon: "lock_outline"
+               }]
+    },{
 		title : "Project1",
-		icon : "menu",
+		role: "PROJECT1",
 		subs: [
 		       {
-		    	   href: "#/home/project1/webpage1",
-		    	   title: "Webpage1"
+		    	   href: "#/home/project1/web1",
+		    	   title: "Webpage1",
+                   icon: "pages"
 		       },
 		       {
-		    	   href: "#/home/project1/webpage2",
-		    	   title: "Webpage2"
+		    	   href: "#/home/project1/web2",
+		    	   title: "Webpage2",
+                   icon: "pages"
 		       }
 		       ]
 	},
 	{
-		url : "#/home/project2",
 		title : "Project2",
-		icon : "menu",
+		role: "PROJECT2",
 		subs: [
 		       {
-		    	   href: "#/home/project2/webpage1",
-		    	   title: "Webpage1"
+		    	   href: "#/home/project2/web1",
+		    	   title: "Webpage1",
+                   icon: "pages"
 		       },
 		       {
-		    	   href: "#/home/project2/webpage2",
-		    	   title: "Webpage2"
+		    	   href: "#/home/project2/web2",
+		    	   title: "Webpage2",
+                   icon: "pages"
 		       }
 		       ]
-	}];
+	},
+    {
+        title : "Admin",
+        role: "ADMIN_INFO",
+        subs: [
+               {
+                   href: "#/home/users/info",
+                   title: "User Info",
+                   icon: "info_outline"
+               },
+               {
+                   href: "#/home/groups",
+                   title: "User Groups",
+                   icon: "group"
+               },
+               {
+                   href: "#/home/users",
+                   title: "Users",
+                   icon: "contacts"
+               },
+               {
+                   href: "#/home/logs",
+                   title: "Log File",
+                   icon: "speaker_notes"
+               }
+               ]
+    }];
     
     $controller('BaseController', {
 		$scope : $scope
@@ -64,6 +101,14 @@ springDerbyApp.controller('HomeController', [ '$scope', '$rootScope', '$timeout'
     $scope.logout = function() {
         AuthenticationService.ClearCredentials();
         $location.path('/login');
+    };
+    
+    $scope.accessAvailable = function(role) {
+        var flag = false;
+        if(role == "" || $rootScope.globals.currentUser.roles.indexOf(role) > -1) {
+            flag = true;
+        }
+        return flag;
     };
     
 } ]);

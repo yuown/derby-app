@@ -1,0 +1,37 @@
+<md-content style="height: 100%" ng-controller="UsersController" ng-init="init()" flex>
+    <div layout="row" layout-align="space-between center">
+    	<md-subheader class="md-primary">Users</md-subheader>
+		<div>
+			<md-button class="md-fab md-primary md-hue-2" aria-label="Add" ng-click="addEditUser(null, $event)">
+				<i class="material-icons">add</i>
+			</md-button>
+			<md-button class="md-fab md-primary md-hue-2" aria-label="Refresh" ng-click="load()">
+				<i class="material-icons">refresh</i>
+			</md-button>
+		</div>
+	</div>
+	<md-list>
+         <md-list-item ng-repeat="user in users" ng-click="nothing()" flex>
+            <p>{{user.fullName}} ({{user.username}})</p>
+			<div class="lock-size" layout="row" layout-align="center center">
+				<md-fab-speed-dial md-open="true" md-direction="left">
+					<md-fab-trigger>
+					</md-fab-trigger>
+					<md-fab-actions>
+						<md-button aria-label="Delete User" class="md-fab md-mini" ng-click="deleteUser(user, $event)">
+							<md-tooltip>Delete User</md-tooltip>
+							<i class="material-icons">delete</i>
+						</md-button>
+						<md-button aria-label="View User" class="md-fab md-mini" ng-click="addEditUser(user, $event)">
+							<md-tooltip>View User</md-tooltip>
+							<i class="material-icons">mode_edit</i>
+						</md-button>
+						<md-switch class="md-primary" md-no-ink aria-label="Enable/ Disable User" ng-model="user.enabled" ng-change="enableUser(user)">
+			                <md-tooltip>Enable/ Disable User</md-tooltip>
+			            </md-switch>
+					</md-fab-actions>
+				</md-fab-speed-dial>
+			</div>
+         </md-list-item>
+     </md-list>
+</md-content>

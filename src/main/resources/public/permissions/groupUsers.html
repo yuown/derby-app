@@ -1,0 +1,32 @@
+<md-dialog aria-label="Group Users" ng-controller="GroupUsersController" ng-init="init()" ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add/ Remove Group Users</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <div class="md-dialog-content">
+        	<div layout="row" layout-align="space-between center" flex>
+				<md-select ng-model="selectedUser">
+					<md-option ng-repeat="user in users" value="{{user.username}}">{{user.username}}</md-option>
+				</md-select>
+        		<md-button ng-click="confirmAddUserToGroup(selectedUser)" class="md-primary md-raised md-hue-2" ng-disabled="users.length == 0 || selectedUser == ''">Add User</md-button>
+        	</div>
+			<md-list-item ng-repeat="groupUser in groupUsers" ng-click="nothing()">
+				<p>{{groupUser.username}}</p>
+				<md-button aria-label="Remove User from Group" class="md-fab md-mini md-secondary md-hue-3" ng-click="removeUserFromGroup(group.name, groupUser.username)">
+                    <md-tooltip>Remove User from Group</md-tooltip>
+                    <i class="material-icons">remove</i>
+                </md-button>
+			</md-list-item>
+		</div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()"> Cancel </md-button>
+    </md-dialog-actions>
+</md-dialog>

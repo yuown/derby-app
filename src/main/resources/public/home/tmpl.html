@@ -10,18 +10,16 @@
 			</div>
 		</md-toolbar>
 		<md-content ng-cloak>
-<!-- 			<md-list> -->
-<!-- 	            <md-list-item ng-repeat="link in urls" ng-href="{{link.url}}" ng-click="toggleLeft()"> -->
-<!-- 					<md-button><md-icon md-svg-icon="{{link.icon}}"></md-icon>  <label>{{link.title}}</label></md-button> -->
-<!-- 				</md-list-item> -->
-<!-- 	        </md-list> -->
 			<md-sidemenu locked="true">
-			  <md-sidemenu-group ng-repeat="link in urls" ng-click="toggleLeft()">
-			    <md-subheader class="md-no-sticky">{{link.title}}</md-subheader>
-			    <md-sidemenu-content md-icon="{{link.icon}}" md-heading="Menu 1" md-arrow="true">
-			      <md-sidemenu-button ng-repeat="sub in link.subs" href="{{sub.href}}">{{sub.title}}</md-sidemenu-button>
-			    </md-sidemenu-content>
-			  </md-sidemenu-group>
+                <md-sidemenu-group ng-repeat="link in urls" ng-show="accessAvailable(link.role)">
+                    <md-subheader class="md-no-sticky">{{link.title}}</md-subheader>
+                    <md-sidemenu-content md-heading="{{link.title}}" md-arrow="true">
+                        <md-list-item ng-repeat="sub in link.subs" ng-href="{{sub.href}}" ng-click="toggleLeft()">
+                            <md-button><i class="material-icons">{{sub.icon}}</i>  <label>{{sub.title}}</label></md-button>
+                        </md-list-item>
+                    </md-sidemenu-content>
+                    <md-divider></md-divider>
+                </md-sidemenu-group>
 			</md-sidemenu>
 		</md-content>
 	</md-sidenav>

@@ -1,0 +1,26 @@
+<md-dialog aria-label="Authorities" ng-controller="AuthoritiesController" ng-init="load()" ng-cloak>
+	<form ng-submit="save()">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Authorities</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout-padding>
+        <div class="md-dialog-content">
+			<md-list-item ng-repeat="authority in authorities">
+				<md-checkbox ng-model="authority.selected"></md-checkbox>
+				<p>{{authority.name}}</p>
+			</md-list-item>
+		</div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()"> Cancel </md-button>
+        <md-button type="submit" style="margin-right:20px;"> Save </md-button>
+    </md-dialog-actions>
+    </form>
+</md-dialog>

@@ -23,18 +23,16 @@ springDerbyApp.factory('AuthenticationService', ['$http', '$cookieStore', '$root
                 currentUser : {
                     username : username,
                     authdata : authdata,
-                    roles: roles,
-                    fullName: fullName,
-                    staff: staff
+                    roles: roles
                 }
             };
 
             $http.defaults.headers.common['SESSION-KEY'] = authdata;
             service.updateCookie();
-	        AjaxService.call('about', 'GET').success(function(data, status, headers, config) {
-	            $rootScope.globals.owner = data.licenceTo;
-	            service.updateCookie();
-	        });
+//	        AjaxService.call('about', 'GET').success(function(data, status, headers, config) {
+//	            $rootScope.globals.owner = data.licenceTo;
+//	            service.updateCookie();
+//	        });
 		} else{
 			$rootScope.errorMessage = "Failed to Login, due to a Server Error, Please contact Administrator!";
 		}
