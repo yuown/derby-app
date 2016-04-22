@@ -9,6 +9,7 @@ springDerbyApp.config(function($routeSegmentProvider, $routeProvider) {
     	when('/home/project1/web2', 'home.project1web2').
     	when('/home/project2/web1', 'home.project2web1').
         when('/home/project2/web2', 'home.project2web2').
+        when('/home/user/info', 'home.userInfo').
         when('/home/groups', 'home.groups').
         when('/home/users', 'home.users').
     	segment('home', {
@@ -49,6 +50,12 @@ springDerbyApp.config(function($routeSegmentProvider, $routeProvider) {
             }).
             segment('project2web2', {
                 templateUrl : 'project2/web2.html'
+            });
+    
+    $routeSegmentProvider.
+    within('home').
+            segment('userInfo', {
+                templateUrl : 'info/tmpl.html'
             });
     
     $routeProvider.otherwise({redirectTo: '/login'}); 

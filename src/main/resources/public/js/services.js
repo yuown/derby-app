@@ -11,7 +11,7 @@ springDerbyApp.factory('AuthenticationService', ['$http', '$cookieStore', '$root
 		});
 	};
 
-	service.SetCredentials = function(username, authdata, r, fullName) {
+	service.SetCredentials = function(username, authdata, r, fullName, lastLogin) {
 	    service.ClearCredentials();
 		if (authdata != null && authdata != '' && authdata != 'null' && authdata != undefined) {
 			var roles = [];
@@ -24,16 +24,13 @@ springDerbyApp.factory('AuthenticationService', ['$http', '$cookieStore', '$root
                     username : username,
                     authdata : authdata,
                     roles: roles,
-                    fullName: fullName
+                    fullName: fullName,
+                    lastLogin: lastLogin
                 }
             };
 
             $http.defaults.headers.common['SESSION-KEY'] = authdata;
             service.updateCookie();
-//	        AjaxService.call('about', 'GET').success(function(data, status, headers, config) {
-//	            $rootScope.globals.owner = data.licenceTo;
-//	            service.updateCookie();
-//	        });
 		} else{
 			$rootScope.errorMessage = "Failed to Login, due to a Server Error, Please contact Administrator!";
 		}

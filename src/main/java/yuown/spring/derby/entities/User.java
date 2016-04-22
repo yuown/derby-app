@@ -20,7 +20,8 @@ import javax.persistence.UniqueConstraint;
     	@AttributeOverride(name = "id", column = @Column(name = "ID", insertable = false, updatable = false)),
     	@AttributeOverride(name = "username", column = @Column(name = "username", nullable = false)),
     	@AttributeOverride(name = "password", column = @Column(name = "PASSWORD")),
-    	@AttributeOverride(name = "fullName", column = @Column(name = "FULL_NAME"))
+    	@AttributeOverride(name = "fullName", column = @Column(name = "FULL_NAME")),
+        @AttributeOverride(name = "lastLogin", column = @Column(name = "LAST_LOGIN"))
 })
 public class User extends BaseEntity<Integer> implements Serializable {
 
@@ -31,6 +32,8 @@ public class User extends BaseEntity<Integer> implements Serializable {
 	private String password;
 
 	private String fullName;
+	
+	private String lastLogin;
 	
 	public String getUsername() {
 		return username;
@@ -56,7 +59,15 @@ public class User extends BaseEntity<Integer> implements Serializable {
 		this.fullName = fullName;
 	}
 
-	@Override
+	public String getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    @Override
 	@Id
 	public Integer getId() {
 		return this.id;

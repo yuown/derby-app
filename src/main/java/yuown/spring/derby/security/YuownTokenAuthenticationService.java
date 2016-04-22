@@ -20,10 +20,10 @@ public class YuownTokenAuthenticationService {
 	@Value("${auth.header.name}")
 	private String AUTH_HEADER_NAME;
 
-	@Value("${valid.days.for.auth.token}")
-	private int validDaysForAuthToken;
+	@Value("${valid.minutes.for.auth.token}")
+	private int validMinutesForAuthToken;
 
-	private static final long ONE_DAY = 1000 * 60 * 60 * 24;
+	private static final long ONE_MINUTE = 1000 * 60;
 
 	private final YuownTokenHandler yuownTokenHandler;
 
@@ -36,14 +36,12 @@ public class YuownTokenAuthenticationService {
 	}
 
 	public void addAuthentication(HttpServletResponse response, UserModel user) {
-		user.setExpires(System.currentTimeMillis() + (ONE_DAY * validDaysForAuthToken));
+		user.setExpires(System.currentTimeMillis() + (ONE_MINUTE * validMinutesForAuthToken));
 		String encryptedToken = yuownTokenHandler.createTokenForUser(user);
 		if (StringUtils.isNotBlank(encryptedToken)) {
 			response.addHeader(AUTH_HEADER_NAME, encryptedToken);
 			response.addHeader("USER_FULLNAME", user.getFullName());
-			if(null != user.getStaff()) {
-				response.addHeader("USER_STAFF", user.getStaff().toString());
-			}
+			response.addHeader("LAST_LOGIN", user.getLastLogin());
 			try {
 				response.addHeader("USER_ROLES", objectMapper.writeValueAsString(user.getAuthorities()));
 			} catch (JsonProcessingException e) {

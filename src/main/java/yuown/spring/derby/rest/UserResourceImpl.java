@@ -30,6 +30,9 @@ public class UserResourceImpl {
 
 	@Autowired
 	private YuownTokenAuthenticationService yuownTokenAuthenticationService;
+	
+	@Autowired
+	private HttpServletRequest request;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.TEXT_PLAIN_VALUE })
 	@ResponseBody
@@ -52,7 +55,7 @@ public class UserResourceImpl {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.TEXT_PLAIN_VALUE })
 	@ResponseBody
-	public ResponseEntity<String> profileUpdate(@RequestBody UserModel model, HttpServletRequest request) {
+	public ResponseEntity<String> profileUpdate(@RequestBody UserModel model) {
 		UserModel user = userService.findByUsername(model.getUsername());
 		HttpHeaders headers = new HttpHeaders();
 		if (null != user) {
@@ -130,6 +133,12 @@ public class UserResourceImpl {
 			}
 		}
 	}
+	
+	@RequestMapping(value = "/info", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public ResponseEntity<UserModel> info() {
+        return new ResponseEntity<UserModel>(yuownTokenAuthenticationService.getUserObject(request), HttpStatus.OK);
+    }
 
 	@RequestMapping(method = RequestMethod.GET, value = "/groups/authorities", produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseBody

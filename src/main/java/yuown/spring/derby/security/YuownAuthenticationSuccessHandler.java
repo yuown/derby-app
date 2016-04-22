@@ -10,9 +10,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import yuown.spring.derby.model.UserModel;
+import yuown.spring.derby.repository.UserRepository;
 import yuown.spring.derby.service.UserService;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,9 @@ public class YuownAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    private UserRepository userRepository;
 
 	private Logger log = LoggerFactory.getLogger(YuownAuthenticationSuccessHandler.class);
 
@@ -39,6 +44,9 @@ public class YuownAuthenticationSuccessHandler extends SavedRequestAwareAuthenti
 		final User authenticatedUser = (User) authResult.getPrincipal();
 
 		UserModel fromDB = userService.getByUsername(authenticatedUser.getUsername());
+		yuown.spring.derby.entities.User u = userRepository.findByUsername(authenticatedUser.getUsername());
+		u.setLastLogin(new Date().toString());
+		userRepository.save(u);
 
 		log.debug("User: {} - Auths: {}", fromDB.getUsername(), fromDB.getAuthorities());
 

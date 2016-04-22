@@ -20,8 +20,8 @@ public class UserModel extends Model {
 
 	private long expires;
 	
-	private Integer staff;
-
+	private String lastLogin;
+	
 	private ArrayList<YuownGrantedAuthority> authorities;
 
 	public String getPassword() {
@@ -56,7 +56,15 @@ public class UserModel extends Model {
 		return this.username;
 	}
 
-	@JsonIgnore
+	public String getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    @JsonIgnore
 	public boolean isAccountNonExpired() {
 		return this.enabled;
 	}
@@ -85,13 +93,5 @@ public class UserModel extends Model {
 
 	public ArrayList<YuownGrantedAuthority> getAuthorities() {
 		return authorities;
-	}
-
-	public Integer getStaff() {
-		return staff;
-	}
-
-	public void setStaff(Integer staff) {
-		this.staff = staff;
 	}
 }

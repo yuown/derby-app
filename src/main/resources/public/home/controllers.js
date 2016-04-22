@@ -55,7 +55,7 @@ springDerbyApp.controller('HomeController', [ '$scope', '$rootScope', '$timeout'
         role: "ADMIN_INFO",
         subs: [
                {
-                   href: "#/home/users/info",
+                   href: "#/home/user/info",
                    title: "User Info",
                    icon: "info_outline"
                },
