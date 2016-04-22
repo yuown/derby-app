@@ -48,8 +48,8 @@
 		<security:authentication-provider user-service-ref="jdbcUserDetailsManager" />
 	</security:authentication-manager>
 
-	<jdbc:initialize-database data-source="dataSource" enabled="true">
-		<jdbc:script location="classpath:/schema/schema.txt" />
-	</jdbc:initialize-database>
+<!-- 	<jdbc:initialize-database data-source="dataSource" enabled="true"> -->
+<!-- 		<jdbc:script location="classpath:/schema/schema.txt" /> -->
+<!-- 	</jdbc:initialize-database> -->
 
 </beans>

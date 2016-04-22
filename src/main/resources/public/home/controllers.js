@@ -4,9 +4,13 @@ springDerbyApp.controller('HomeController', [ '$scope', '$rootScope', '$timeout'
     $scope.app = {
     	name: "Spring Derby Test"	
     };
-
+    var username = "username";
+    try {
+        username = $rootScope.globals.currentUser.username;
+    } catch (e) {
+    }
     $scope.urls = [ {
-        title : "Logout",
+        title : username,
         role: "",
         subs: [
                {

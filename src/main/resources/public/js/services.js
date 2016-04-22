@@ -11,7 +11,7 @@ springDerbyApp.factory('AuthenticationService', ['$http', '$cookieStore', '$root
 		});
 	};
 
-	service.SetCredentials = function(username, authdata, r, fullName, staff) {
+	service.SetCredentials = function(username, authdata, r, fullName) {
 	    service.ClearCredentials();
 		if (authdata != null && authdata != '' && authdata != 'null' && authdata != undefined) {
 			var roles = [];
@@ -23,7 +23,8 @@ springDerbyApp.factory('AuthenticationService', ['$http', '$cookieStore', '$root
                 currentUser : {
                     username : username,
                     authdata : authdata,
-                    roles: roles
+                    roles: roles,
+                    fullName: fullName
                 }
             };
 
