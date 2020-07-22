@@ -18,7 +18,7 @@
       ],
       "cpu": 1024,
       "memory": 256,
-      "image": "tomcat",
+      "image": "derby-image",
       "essential": true,
       "name": "derby-app"
     }
