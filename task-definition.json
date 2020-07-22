@@ -1,33 +1,38 @@
 {
+  "executionRoleArn": "arn:aws:iam::482910314683:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/tomcat-container-logs",
+          "awslogs-group": "/ecs/derby-app",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
       },
       "portMappings": [
         {
-          "hostPort": 8080,
+          "hostPort": 8888,
           "protocol": "tcp",
-          "containerPort": 8080
+          "containerPort": 8888
         }
       ],
-      "cpu": 1024,
-      "memory": 256,
-      "image": "derby-image",
+      "image": "derby-app",
       "essential": true,
       "name": "derby-app"
     }
   ],
-  "requiresCompatibilities": [
-      "FARGATE"
-   ], 
   "memory": "512",
+  "taskRoleArn": "arn:aws:iam::482910314683:role/ECSRole",
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:482910314683:task-definition/derby-app:1",
   "family": "derby-app",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
   "networkMode": "awsvpc",
-  "cpu": "1024"
+  "cpu": "256"
 }
